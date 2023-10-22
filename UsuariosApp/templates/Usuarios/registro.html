@@ -1,0 +1,41 @@
+<!-- herencia y carga de archivos estáticos -->
+{% extends "Bookrealm/padre.html" %}
+{% load static %}
+
+
+
+
+<!-- BLOQUE TITLE: titulo de la ventana navegador -->
+{% block title %}
+Registrarse
+{% endblock %}
+
+
+
+
+<!-- BLOQUE TITLE: titulo de la ventana navegador -->
+{% block titulo %}
+<h1 class="masthead-heading mb-0">Registro</h1>
+<h2 class="masthead-subheading mb-0"></h2>
+
+<p>
+    Tienes un usuario? Inicia sesi&oacute;n
+    <a href="{% url 'Login' %}" class="link">aqu&iacute;</a>
+</p>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <p>
+        Usuario: {{form.username}} <br> <br>
+        Correo: {{form.email}} <br> <br>
+        Contraseña: {{form.password1}} <br> <br>
+        - Más de 8 caracteres <br>
+        - No repetir informaci&oacute;n de usuario o similar <br>
+        - No usar contraseñas comunes <br>
+        - Puede ser alfanum&eacute;rico <br>
+        <br> <br>
+        Repetir contraseña: {{form.password2}}
+    </p>
+    <input type="submit" value="Registrarse" class="btn btn-primary btn-xl rounded-pill mt-5">
+</form>
+{% endblock %}

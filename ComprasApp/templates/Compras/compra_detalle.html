@@ -1,0 +1,47 @@
+
+{% extends "Bookrealm/padre.html" %}
+{% load static %}
+
+
+
+
+
+{% block title %}
+    Detalle compra
+{% endblock title %}
+
+
+
+
+
+{% block titulo %}
+<h1 class="masthead-heading mb-0">Detalle compra</h1>
+<h2 class="masthead-subheading mb-0" style="color:#ee0979;">{{compra.fecha}}</h2>
+<a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">Ver mas</a>
+{% endblock titulo %}
+
+
+
+
+
+{% block cambia %}
+<section id="scroll">
+    <h1 class="display-4 ms-5 mt-2" style="padding: 0px;">
+        Libro: {{compra.libro}}
+    </h1>
+    <p class="display-6 ms-5" style="padding: 0px;">
+        {% for l in libros %}
+            {% if compra.libro == l %}
+                Precio del libro: {{l.precio}}
+                <br>
+                Oferta: {{compra.oferta}}
+                <br>
+                Metodo de pago: {{compra.pago}}
+                <br>
+                Precio final: {{compra.precio}}
+                <br>
+            {% endif%}
+        {% endfor %}
+    </p>
+</section>
+{% endblock cambia%}

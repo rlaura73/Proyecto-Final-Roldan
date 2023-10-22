@@ -1,0 +1,119 @@
+<!-- herencia y carga de archivos estáticos -->
+{% extends "Bookrealm/padre.html" %}
+{% load static %}
+
+
+<!-- BLOQUE TITLE: titulo de la ventana navegador -->
+{% block title %}
+    Bookrealm
+{% endblock title %}
+
+
+
+<!-- BLOQUE TITULO: título / encabezado de página -->
+{% block titulo %}
+    <h1 class="masthead-heading mb-0">Bookrealm</h1>
+    <h2 class="masthead-subheading mb-0" style="color:#ee0979;">Lee y vive mil vidas en una</h2>
+    <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">Ver mas</a>
+{% endblock titulo %}
+
+
+
+
+<!-- BLOQUE CAMBIA: sección / secciones de la página / contenido -->
+{% block cambia %}
+
+    <!-- Content section 1-->
+    <section id="scroll">
+
+        <h1 class="display-4 text-center mt-4">
+            NOVEDADES
+        </h1>
+
+        <div class="container px-5">
+
+            <div class="row gx-5 align-items-center">
+
+                <div class="col-lg-6 order-lg-2">
+                    <div class="p-5"><img class="img-fluid rounded-circle"
+                        src="{% static 'Bookrealm/assets/img/l1-esda01.jpg' %}" alt="..." />
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 order-lg-1">
+                    <div class="p-5">
+                        <h2 class="display-4">
+                            El Señor de los Anillos
+                        </h2>
+                        <p class="display-6">
+                            JRR Tolkien <br>
+                            6000 ARS
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        
+    </section>
+    <!-- Content section 1-->
+
+
+
+
+    <!-- Content section 2-->
+    <section>
+        <div class="container px-5">
+            <div class="row gx-5 align-items-center">
+                <div class="col-lg-6">
+                    <div class="p-5"><img class="img-fluid rounded-circle"
+                        src="{% static 'Bookrealm/assets/img/l2-got.jpg' %}" alt="..." />
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="p-5">
+                        <h2 class="display-4">
+                            Juego de Tronos
+                        </h2>
+                        <p class="display-6">
+                            George R. R. Martin <br>
+                            9500 ARS
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Content section 2-->
+
+
+
+
+
+    <!-- Content section 3-->
+    <section>
+        <div class="container px-5">
+            <div class="row gx-5 align-items-center">
+                <div class="col-lg-6 order-lg-2">
+                    <div class="p-5"><img class="img-fluid rounded-circle"
+                        src="{% static 'Bookrealm/assets/img/l3-twd.jpg' %}" alt="..." />
+                    </div>
+                </div>
+                <div class="col-lg-6 order-lg-1">
+                    <div class="p-5">
+                        <h2 class="display-4">
+                            The Walking Dead (vol.2)
+                        </h2>
+                        <p class="display-6">
+                            Robert Kirkman <br>
+                            1900 ARS
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Content section 3-->
+
+{% endblock %}

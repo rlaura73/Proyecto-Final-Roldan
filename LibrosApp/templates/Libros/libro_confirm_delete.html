@@ -1,0 +1,29 @@
+<!-- herencia y carga de archivos estáticos -->
+{% extends "Bookrealm/padre.html" %}
+{% load static %}
+
+
+
+<!-- BLOQUE TITLE: titulo de la ventana navegador -->
+{% block title %}
+    Confirmar eliminacion
+{% endblock title %}
+
+
+
+<!-- BLOQUE TITULO: título / encabezado de página -->
+{% block titulo %}
+<h1 class="masthead-heading mb-0" style="color:#ee0979;">{{libro.titulo}}</h1>
+
+<form action="" method="post" class="masthead-subheading mb-0">
+    {% csrf_token %}
+
+    ¿Deseas eliminar este libro? <br>
+    <!-- botón / link para volver a la página de libros -->
+    <a href="{% url 'PagLibros' %}" class="btn btn-primary btn-xl rounded-pill mt-5">No</a>
+
+    <!-- botón / link para confirmar eliminación -->
+    <input type="submit" value="S&iacute;" class="btn btn-primary btn-xl rounded-pill mt-5">
+
+</form>
+{% endblock titulo %}

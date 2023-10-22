@@ -1,0 +1,122 @@
+<!-- herencia y carga de archivos estáticos -->
+{% extends "Bookrealm/padre.html" %}
+{% load static %}
+
+
+
+<!-- BLOQUE TITLE: titulo de la ventana navegador -->
+{% block title %}
+    Detalle libro
+{% endblock title %}
+
+
+
+<!-- BLOQUE TITULO: título / encabezado de página -->
+{% block titulo %}
+<h1 class="masthead-heading mb-0">{{libro.titulo}}</h1> <!-- titulo -->
+<h2 class="masthead-subheading mb-0" style="color:#ee0979;">informacion adicional</h2> <!-- subtitulo -->
+<a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">Ver mas</a>
+
+{% if request.user.is_superuser or request.user.is_staff %}
+{% else %}
+  <a href="{% url 'Comprar' libro.id %}" class="btn btn-primary btn-xl rounded-pill mt-5 mb-2">Comprar</a>
+{% endif %}
+
+{% endblock titulo %}
+
+
+
+
+<!-- BLOQUE CAMBIA: sección / secciones de la página / contenido -->
+{% block cambia %}
+<section id="scroll" class="d-flex">
+
+  <div id="carouselExampleIndicators" class="carousel slide w-50 h-50">
+
+    <div class="carousel-indicators">
+
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+
+    </div>
+
+
+    <div class="carousel-inner" style="background-color: gray;">
+
+      <div class="carousel-item active">
+        {% if portada %}
+          {% if portada.book == libro %}
+          <img src="{{ portada.portada.url }}" class="d-block w-100 h-50" alt="portada">
+          {% endif %}
+        {% else %}
+            <img src="{% static 'Bookrealm/assets/img/bg.jpeg' %}" class="d-block w-100 h-50" alt="...">
+        {% endif %}
+      </div>
+
+      <div class="carousel-item">
+        {% if portada %}
+          {% if portada.book == libro %}
+          <img src="{{ portada.previa_img1.url }}" class="d-block w-100 h-50" alt="portada">
+          {% endif %}
+        {% else %}
+            <img src="{% static 'Bookrealm/assets/img/l2-got2.jpg' %}" class="d-block w-100 h-50" alt="...">
+        {% endif %}
+      </div>
+
+      <div class="carousel-item">
+        {% if portada %}
+          {% if portada.book == libro %}
+          <img src="{{ portada.previa_img2.url }}" class="d-block w-100 h-50" alt="portada">
+          {% endif %}
+        {% else %}
+          <img src="{% static 'Bookrealm/assets/img/l3-twd2.jpg' %}" class="d-block w-100" alt="..." style="height: 70em;">
+        {% endif %}
+      </div>
+
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+
+      <span class="visually-hidden">Previous</span>
+
+    </button>
+
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+
+    </button>
+      
+  </div>
+  
+  <div class="w-50 mt-2">
+    <h1 class="display-4 ms-5 mt-2" style="padding: 0px;">
+      Titulo: {{libro.titulo}}
+    </h1>
+    <p class="display-6 ms-5" style="padding: 0px;">
+      Autor: {{libro.autor}} <br>
+      Editorial: {{libro.editorial}} <br>
+  
+      <br>
+  
+      Precio: {{libro.precio}}
+
+      {% if libro.titulo == l %}
+
+      <br> <br>
+      Sinopsis: <br>
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero excepturi fugiat tenetur voluptates modi vitae cumque atque magnam, porro voluptate sapiente ducimus illo. Similique cupiditate suscipit praesentium nam reiciendis nostrum.
+      {% endif %}
+    </p>
+  </div>
+  
+
+
+</section>
+{% endblock cambia %}

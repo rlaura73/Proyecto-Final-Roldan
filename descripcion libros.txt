@@ -1,0 +1,141 @@
+LISTADO DE INFORMACIÓN DE LIBROS
+
+La Crisis de la Narración
+Byung-chul Han
+Planeta
+STOCK: 5
+PRECIO: 4900
+OFERTA: 0%
+
+
+
+
+Bocabesada
+Juan del Val
+Espasa Libros
+STOCK: 4
+PRECIO: 5900
+OFERTA: 20%
+
+
+
+
+
+La Regla Mola
+Anna Salvia, Critina Torron Menstruita
+Montena
+STOCK: 3
+PRECIO: 5900
+OFERTA: 15%
+
+
+
+
+
+The Walking Dead (vol.2)
+Robert Kirkman
+Planeta
+STOCK: 6
+PRECIO: 1900
+OFERTA: 0%
+
+
+
+
+
+
+
+El Principito
+Antoine de Saint-Exupéry
+Argenta
+STOCK: 5
+PRECIO: 2000
+OFERTA: 0%
+
+
+
+
+
+
+Beyond the story
+Myeongseok Kang
+Plaza & Janes Editores
+STOCK: 7
+PRECIO: 6000
+OFERTA: 30%
+
+
+
+
+
+
+El Diario de Ana Frank
+Anne Frank
+Penguin Random House
+STOCK: 3
+PRECIO: 1900
+OFERTA: 0%
+
+
+
+
+
+Harry Potter y las Reliquias de la Muerte
+J.K. Rowling
+Penguin Random House
+STOCK: 4
+PRECIO: 6000
+OFERTA: 0%
+
+
+
+
+
+El Señor de los Anillos
+JRR Tolkien
+Planeta
+STOCK: 3
+PRECIO: 8500
+OFERTA: 30%
+
+
+
+
+
+The Walking Dead (Rise of the Governor)
+Robert Kirkman
+Planeta
+STOCK: 3
+PRECIO: 1900
+OFERTA: 0%
+
+
+
+
+
+
+Juego de Tronos
+George R. R. Martin
+Argenta
+STOCK: 4
+PRECIO: 9500
+OFERTA: 30%
+
+
+
+Politica Economica Contrareloj
+Milei, Giacomini, Ferrelli Mazza
+Argenta
+STOCK: 6
+PRECIO: 4000
+OFERTA: 0%
+
+
+
+
+El Amor es Imposible
+Darío Sztajnszrajber
+Ariel
+STOCK: 4
+PRECIO: 7000
+OFERTA: 25%

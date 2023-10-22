@@ -1,0 +1,42 @@
+<!-- herencia y carga de archivos estáticos -->
+{% extends "Bookrealm/padre.html" %}
+{% load static %}
+
+
+<!-- BLOQUE TITLE: titulo de la ventana navegador -->
+{% block title %}
+    Agregar comentario
+{% endblock title %}
+
+
+
+<!-- BLOQUE TITULO: título / encabezado de página -->
+{% block titulo %}
+
+<h1 class="masthead-heading mb-0">Agregar reseña</h1>
+<h2 class="masthead-subheading mb-0" style="color:#ee0979;">{{mensaje}}</h2> <!-- subtitulo -->
+
+
+<form action="" method="post">
+    {% csrf_token %}
+
+    {% if form %}
+        <p>
+            Valoración (1-5): {{form.encabezado}}
+            <br> <br>
+            Asunto: {{form.titulo}}
+        </p>
+
+        <!-- para el textarea -->
+        <fieldset>
+            <legend>Comentario</legend>
+            {{form.comentario}}
+        </fieldset>
+
+        <input type="submit" class="btn btn-primary btn-xl rounded-pill mt-5" value="Agregar">
+    {% else %}
+        <a class="btn btn-primary btn-xl rounded-pill mt-5" href="{% url 'AgregarComentario' %}">Regresar</a>
+    {% endif %}
+</form>
+
+{% endblock titulo %}

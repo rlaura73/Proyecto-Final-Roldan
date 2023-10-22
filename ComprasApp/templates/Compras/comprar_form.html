@@ -1,0 +1,50 @@
+<!-- herencia y carga de archivos estáticos -->
+{% extends "Bookrealm/padre.html" %}
+{% load static %}
+
+
+
+<!-- BLOQUE TITLE: titulo de la ventana navegador -->
+{% block title %}
+    Formulario
+{% endblock title %}
+
+
+
+<!-- BLOQUE TITULO: título / encabezado de página -->
+{% block titulo %}
+
+<h1 class="masthead-heading mb-0">Registrar compra</h1>
+<h2 class="masthead-subheading mb-0" style="color:#ee0979;">{{now}}</h2>
+
+<form action="" method="post">
+    {% csrf_token %}
+
+    <p class="">
+
+        Libro:
+        <input type="text" value="{{libro.titulo}}" disabled>
+
+        <br> <br>
+
+        Precio:
+        <input type="text" value="{{libro.precio}}" disabled>
+
+        <br> <br>
+
+        Oferta:
+        <input type="text" value="{{libro.oferta}}" disabled>
+
+        <br> <br>
+
+        Total a pagar (oferta aplicada):
+
+        <input type="text" value="{{total}}" disabled>
+    </p>
+
+    {{form.as_p}}
+
+
+    <input type="submit" class="btn btn-primary btn-xl rounded-pill mt-5" value="Comprar">
+</form>
+{% endblock titulo %}

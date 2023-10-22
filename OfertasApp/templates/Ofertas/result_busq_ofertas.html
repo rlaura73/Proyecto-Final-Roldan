@@ -1,0 +1,71 @@
+<!-- herencia y carga de archivos estáticos -->
+{% extends "Bookrealm/padre.html" %}
+{% load static %}
+
+
+
+
+<!-- BLOQUE TITLE: titulo de la ventana navegador -->
+{% block title %}
+Resultado busqueda
+{% endblock %}
+
+
+
+
+<!-- BLOQUE TITULO: título / encabezado de página -->
+{% block titulo %}
+<h1 class="masthead-heading mb-0">Resultado busqueda</h1>
+<h2 class="masthead-subheading mb-0" style="color:#ee0979;">ofertas</h2>
+<a class="btn btn-primary btn-xl rounded-pill mt-5" href="{% url 'BuscarOferta' %}">Busqueda ofertas</a>
+{% endblock titulo %}
+
+
+
+
+
+<!-- BLOQUE CAMBIA: sección / secciones de la página / contenido -->
+{% block cambia %}
+
+<!-- Content section 1-->
+    <section id="scroll">
+
+        <div class="row justify-content-center mt-4">
+
+            <!-- listar los registros -->
+            {% for libro in libros %}
+
+                {% if libro.stock > 0 %} <!-- mostrar solos lo de stock disponible -->
+                    <div class="card me-3 mb-4" style="width: 18rem;">
+
+                        {% if portadas %}
+                            {% for portada in portadas %}
+                                {% if portada.book == libro %}
+                                    <img src="{{ portada.portada.url }}" class="card-img-top mt-2" alt="..." style="height: 20em; width:16.3em;">
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <img src="..." class="card-img-top mt-2" alt="...">
+                        {% endif %}
+
+                        
+                        <div class="card-body">
+                            <h5 class="card-title">{{libro.titulo}}</h5>
+                            <p class="card-text" style="color:#ee0979;">
+                                Oferta: {{libro.oferta}}
+                            </p>
+                            <a href="{% url 'DetalleLibro' libro.id %}" class="btn btn-primary">Ver</a>
+                            <a href="{% url 'Comprar' libro.id %}" class="btn btn-primary">Comprar</a>
+                        </div>
+                    </div>
+
+                {% endif %}
+            {% endfor %}
+        </div>
+
+
+
+    </section>
+    <!-- Content section 1-->
+
+{% endblock %}

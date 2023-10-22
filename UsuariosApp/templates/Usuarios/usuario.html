@@ -1,0 +1,50 @@
+<!-- herencia y carga de archivos estáticos -->
+{% extends "Bookrealm/padre.html" %}
+{% load static %}
+
+
+
+
+<!-- BLOQUE TITLE: titulo de la ventana navegador -->
+{% block title %}
+    Perfil
+{% endblock title %}
+
+
+
+
+
+<!-- BLOQUE TITULO: título / encabezado de página -->
+{% block titulo %}
+
+<h1 class="masthead-heading mb-0">Perfil</h1>
+<h2 class="masthead-subheading mb-0" style="color:#ee0979;">{{mensaje}}</h2>
+
+<p>
+
+    <!-- botón / link para editar perfil -->
+    <a class="btn btn-primary btn-lg rounded-pill mt-5" href="{% url 'EditarPerfil' %}">Editar perfil</a>
+
+    <br>
+
+    {% if request.user.is_superuser or request.user.is_staff %}
+    {% else %}
+        <!-- botón / link para ver tus compras -->
+        <a class="btn btn-primary btn-lg rounded-pill mt-5" href="{% url 'PagCompras' %}">Ver tus compras</a>
+        
+        <br>
+
+        <!-- botón / link para ver tus reseñas / comentarios -->
+        <a class="btn btn-primary btn-lg rounded-pill mt-5" href="{% url 'MisComent' %}">Ver tus reseñas</a>
+    {% endif %}
+
+
+    <br>
+
+    <!-- botón / link para cerrar sesión -->
+    <a class="btn btn-primary btn-xl rounded-pill mt-5" href="{% url 'Logout' %}">Cerrar sesi&oacute;n</a>
+</p>
+
+
+
+{% endblock titulo %}

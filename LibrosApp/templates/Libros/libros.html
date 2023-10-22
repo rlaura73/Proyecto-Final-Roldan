@@ -1,0 +1,149 @@
+<!-- herencia y carga de archivos estáticos -->
+{% extends "Bookrealm/padre.html" %}
+{% load static %}
+
+
+
+<!-- BLOQUE TITLE: titulo de la ventana navegador -->
+{% block title %}
+Libros
+{% endblock %}
+
+
+
+<!-- BLOQUE TITULO: título / encabezado de página -->
+{% block titulo %}
+<h1 class="masthead-heading mb-0">E-Libros</h1> <!-- titulo -->
+<h2 class="masthead-subheading mb-0" style="color:#ee0979;">amplia variedad</h2> <!-- subtitulo -->
+<a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">Ver m&aacute;s</a> <!-- botón / link a la sección -->
+{% endblock titulo %}
+
+
+
+
+
+{% block cambia %}
+
+<!-- Content section 1-->
+    <section id="scroll">
+        
+        
+        
+         <!-- botón / link agregar libro (EXCLUSIVO ADMIN / STAFF) -->
+        {% if request.user.is_superuser or request.user.is_staff %}
+            <a href="{% url 'AgregarLibro' %}" class="btn btn-primary mt-3 ms-5">Nuevo libro</a>
+        {% endif %}
+
+         <!-- botón / link buscar libro en particular -->
+        <a href="{% url 'BuscarLibros' %}" class="btn btn-outline-success px-5 mt-3 ms-3"> Busqueda libros por titulo </a>
+
+
+
+
+        <div class="row justify-content-center mt-4">
+
+            <p class="row justify-content-center" style="color:#ee0979;">
+                {{mensaje}} <!-- en caso de no haber registros, desplegar mensaje -->
+            </p>
+
+            <!-- listar los registros -->
+            {% for libro in libros %}
+
+                {% if libro.stock > 0 %} <!-- mostrar solos lo stocks disponibles -->
+                    <div class="card me-3 mb-4" style="width: 18rem; background-color: white;">
+
+                        {% if portadas %}
+                            {% for portada in portadas %}
+                                {% if portada.book == libro %}
+                                    <img src="{{ portada.portada.url }}" class="card-img-top mt-2" alt="" style="height: 20em; width:16.3em;">
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <img src="" class="card-img-top mt-2" alt="">
+                        {% endif %}
+                        
+
+                        <div class="card-body">
+
+                            <h5 class="card-title">{{libro.titulo}}</h5>
+
+                            <p class="card-text">
+                                Precio: {{libro.precio}}
+
+                                <br>
+
+                                <!-- DETALLES VISTOS UNICAMENTE POR EL ADMIN / STAFF -->
+                                {% if request.user.is_staff or request.user.is_superuser %}
+                                    <br>
+                                    Stock: {{libro.stock}}
+                                    <br>
+                                    Oferta: {{libro.oferta}}
+                                {% endif %}
+                            </p>
+
+                            <a href="{% url 'DetalleLibro' libro.id %}" class="btn btn-primary mb-2">Ver</a>
+                            
+                            <!-- LINK / BOTÓN EXCLUSIVO ADMIN / STAFF -->
+                            {% if request.user.is_superuser or request.user.is_staff %}
+                                <a href="{% url 'EditarLibro' libro.id %}" class="btn btn-primary mb-2"> Editar </a>
+                                <a href="{% url 'EliminarLibro' libro.id %}" class="btn btn-primary mb-2"> Borrar </a>
+                            {% else %}
+                                <a href="{% url 'Comprar' libro.id %}" class="btn btn-primary mb-2">Comprar</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% else %}
+                    
+                    <!-- exclusivo solo el admin o staff: pueden ver estos registros sin stock -->
+                    {% if request.user.is_staff or request.user.is_superuser %}
+
+                        <div class="card me-3 mb-4" style="width: 18rem; background-color: gainsboro;">
+                            {% if portadas %}
+                                {% for portada in portadas %}
+                                    {% if portada.book == libro %}
+                                        <img src="{{ portada.portada.url }}" class="card-img-top mt-2" alt="" style="height: 20em; width:16.3em;">
+                                    {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                <img src="" class="card-img-top mt-2" alt="">
+                            {% endif %}
+
+
+                            <div class="card-body">
+
+                                <h5 class="card-title">{{libro.titulo}}</h5>
+
+                                <p class="card-text">
+                                    Precio: {{libro.precio}}
+
+                                    {% if request.user.is_staff or request.user.is_superuser %}
+                                        <br> <br>
+                                        <span style="color:#ee0979">
+                                            Stock: {{libro.stock}}
+                                        </span>
+                                        <br>
+                                        Oferta: {{libro.oferta}}
+                                    {% endif %}
+                                </p>
+
+                                <a href="{% url 'DetalleLibro' libro.id %}" class="btn btn-primary mb-2">Ver</a>
+
+                                {% if request.user.is_superuser or request.user.is_staff %}
+                                    <a href="{% url 'EditarLibro' libro.id %}" class="btn btn-primary mb-2"> Editar </a>
+                                    <a href="{% url 'EliminarLibro' libro.id %}" class="btn btn-primary mb-2"> Borrar </a>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                    {% endif %}
+
+                {% endif %}
+            {% endfor %}
+        </div>
+
+
+
+    </section>
+    <!-- Content section 1-->
+
+{% endblock %}

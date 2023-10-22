@@ -1,0 +1,104 @@
+<!-- herencia y carga de archivos estáticos -->
+{% extends "Bookrealm/padre.html" %}
+{% load static %}
+
+
+
+<!-- BLOQUE TITLE: titulo de la ventana navegador -->
+{% block title %}
+    Sobre m&iacute;
+{% endblock title %}
+
+
+
+
+<!-- BLOQUE TITULO: título / encabezado de página -->
+{% block titulo %}
+<h1 class="masthead-heading mb-0">Sobre m&iacute;</h1> <!-- titulo -->
+<h2 class="masthead-subheading mb-0" style="color:#ee0979;">Info adicional</h2> <!-- subtitulo -->
+<a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">Ver m&aacute;s</a> <!-- botón / link a la sección -->
+{% endblock titulo %}
+
+
+
+<!-- BLOQUE CAMBIA: sección / secciones de la página / contenido -->
+{% block cambia %}
+
+
+<section id="scroll">
+    <div class="container px-5">
+
+        <div class="row gx-5 align-items-center">
+
+            <div class="col-lg-6">
+
+                <div class="p-5"><img class="img-fluid rounded-circle"
+                    src="{% static 'Bookrealm/assets/img/nvo.jpg' %}" alt="foto" />
+                </div>
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <div class="p-5">
+
+                    <h2 class="display-4">Bookrealm</h2>
+                    
+                    <p>
+                        Nuestra empresa se identifica con la difusión del conocimiento, el entretenimiento y la contribución para una mejor comunicación entre las diferentes culturas. De este modo facilita el aprendizaje de las lenguas extranjeras. Es por ello que nos eligen las instituciones, colegios y universidades de la provincia y el país. Y también llegamos al público que sale en busca de una novela, una guía o su libro favorito.
+
+                        <br> <br>
+
+                        Nuestra misión es promover el acceso a contenidos culturales, educativos y recreativos en diferentes soportes e idiomas. La visión es ser una empresa líder y referente en el mercado argentino por calidad y servicios, productos e innovación.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<section>
+
+    <div class="container px-5">
+
+        <div class="row gx-5 align-items-center">
+
+            <div class="col-lg-6 order-lg-2">
+
+                <div class="p-5"><img class="img-fluid rounded-circle"
+                    src="{% static 'Bookrealm/assets/img/foto.jpg' %}" alt="foto" />
+                </div>
+
+            </div>
+
+            <div class="col-lg-6 order-lg-1">
+
+                <div class="p-5">
+
+                    <h2 class="display-4">Desarrolladora de la web</h2>
+
+                    <h3 class="display-6"> Futura Bibliominera </h3>
+                    
+                    <p>
+                         <br>
+ 
+                        Soy Laura y me dedico al estudio de la Bibliotecología. El interés por esta disciplina siempre estuvo enfocado en el reconocimiento de las fuentes de información para distinguir las Fake News, las lecturas analíticas intencionadas en una corriente de pensamiento tendencioso y los excesos de circulación informacional en la web. Es por ello que me predispongo a continuar con la Ciencia de Datos para crear un sistema de recomendación al usuario a fin que pueda realizar una selección de lo que verdaderamente desea en su demanda de conocimiento.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock cambia %}

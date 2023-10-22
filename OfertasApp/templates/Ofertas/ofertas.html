@@ -1,0 +1,71 @@
+<!-- herencia y carga de archivos estáticos -->
+{% extends "Bookrealm/padre.html" %}
+{% load static %}
+
+
+
+<!-- BLOQUE TITLE: titulo de la ventana navegador -->
+{% block title %}
+Ofertas
+{% endblock %}
+
+
+
+
+
+<!-- BLOQUE TITULO: título / encabezado de página -->
+{% block titulo %}
+<h1 class="masthead-heading mb-0">Ofertas</h1>
+<h2 class="masthead-subheading mb-0" style="color:#ee0979;">rebajas actuales</h2>
+<a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">Ver mas</a>
+{% endblock titulo %}
+
+
+
+
+
+<!-- BLOQUE CAMBIA: sección / secciones de la página / contenido -->
+{% block cambia %}
+
+<section id="scroll">
+        
+        
+    <a href="{% url 'BuscarOferta' %}" class="btn btn-outline-success px-5 mt-3 ms-3"> Busqueda de rebajas </a>
+
+    <div class="row justify-content-center mt-4">
+
+        <p class="row justify-content-center" style="color:#ee0979;">
+            {{mensaje}}
+        </p>
+
+        <!-- listar los registros -->
+        {% for libro in libros %}
+
+            {% if libro.oferta != "0%" and libro.oferta != "0" %}  <!-- mostrar solos lo de stock disponible -->
+                <div class="card me-3 mb-4" style="width: 18rem;">
+
+                    {% if portadas %}
+                        {% for portada in portadas %}
+                            {% if portada.book == libro %}
+                                <img src="{{ portada.portada.url }}" class="card-img-top mt-2" alt="..." style="height: 20em; width:16.3em;">
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <img src="..." class="card-img-top mt-2" alt="...">
+                    {% endif %}
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{libro.titulo}}</h5>
+                        <p class="card-text" style="color:#ee0979;">
+                            Oferta: {{libro.oferta}}
+                        </p>
+                        <a href="{% url 'DetalleLibro' libro.id %}" class="btn btn-primary">Ver libro</a>
+                        <a href="{% url 'Comprar' libro.id %}" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock cambia %}

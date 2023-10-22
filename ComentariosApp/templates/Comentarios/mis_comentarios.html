@@ -1,0 +1,75 @@
+<!-- herencia y carga de archivos estáticos -->
+{% extends "Bookrealm/padre.html" %}
+{% load static %}
+
+
+<!-- BLOQUE TITLE: titulo de la ventana navegador -->
+{% block title %}
+    Mis reseñas
+{% endblock title %}
+
+
+<!-- BLOQUE TITULO: título / encabezado de página -->
+{% block titulo %}
+<h1 class="masthead-heading mb-0">Mis reseñas</h1> <!-- titulo -->
+<h2 class="masthead-subheading mb-0" style="color:#ee0979;">listado</h2> <!-- subtitulo -->
+<a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">Ver mas</a> <!-- botón / link a la sección -->
+{% endblock titulo %}
+
+
+
+<!-- BLOQUE CAMBIA: sección / secciones de la página / contenido -->
+{% block cambia %}
+
+<section id="scroll">
+
+    <div class="container px-5 mb-4 mt-4">
+
+      {{mensaje}} <!-- en caso de no haber registros, desplegar mensaje -->
+
+      <!-- listar los registros -->
+      {% for c in comentarios %}
+        <h2 class="display-4">{{c.encabezado}}</h2>
+
+        <div class="card mb-5">
+
+            <div class="card-header">
+
+              <!-- desplegar avatar en caso de haber -->
+              {% if avatares %}
+                {% for a in avatares %}
+                  {% if a.user == c.usuario %}
+                    <img src="{{ a.avatar.url }}" class="card-img-top me-2" alt="avatar" style="height: 2.5em; width:2.5em;">
+                  {% endif %}
+                {% endfor %}
+              {% else %}
+                <img src="..." class="card-img-top me-2" alt="avatar">
+              {% endif %}
+
+              {{c.usuario}} - {{c.fecha}}
+            </div>
+
+            <div class="card-body">
+
+              <h5 class="card-title">
+                {{c.titulo}}
+              </h5>
+
+              <p class="card-text">
+                {{c.comentario}}
+              </p>
+
+              <!-- comprobar que solo el usuario logueado es el único en poder editar o borrar sus comentarios y no los de otros usuarios -->
+              {% if c.usuario == request.user %}
+                <a href="{% url 'EditarComent' c.id %}" class="btn btn-primary">Editar reseña</a>
+                <a href="{% url 'EliminarComent' c.id %}" class="btn btn-primary">Eliminar reseña</a>
+              {% endif %}
+
+            </div>
+
+        </div>
+      {% endfor %}
+    </div>
+</section>
+
+{% endblock cambia %}

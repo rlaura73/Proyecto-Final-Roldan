@@ -1,0 +1,62 @@
+<!-- herencia y carga de archivos estáticos -->
+{% extends "Bookrealm/padre.html" %}
+{% load static %}
+
+
+
+<!-- BLOQUE TITLE: titulo de la ventana navegador -->
+{% block title %}
+Compras
+{% endblock %}
+
+
+
+<!-- BLOQUE TITULO: título / encabezado de página -->
+{% block titulo %}
+<h1 class="masthead-heading mb-0">Todas tus compras</h1>
+<h2 class="masthead-subheading mb-0" style="color:#ee0979;">{{request.user}}</h2>
+<a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">Ver mas</a>
+{% endblock titulo %}
+
+
+
+
+
+<!-- BLOQUE CAMBIA: sección / secciones de la página / contenido -->
+{% block cambia %}
+
+    <section id="scroll">
+        
+        <div class="container px-5 mt-4 mb-5">
+        
+            <h2 class="display-4">Registros</h2>
+
+            <p class="row justify-content-center" style="color:#ee0979;">
+                {{mensaje}} <!-- desplegar mensaje en caso de no haber registros -->
+            </p>
+
+            {% for compra in compras %}
+
+                <div class="card">
+
+                    <div class="card-header">
+                        {{compra.fecha}}
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{compra.libro}}</h5>
+                        <p class="card-text">
+                            Metodo de pago: {{compra.pago}}
+                        </p>
+                        <a href="{% url 'DetalleCompra' compra.id %}" class="btn btn-primary">Ver</a>
+                    </div>
+                </div>
+            
+
+            {% endfor %}
+            
+        </div>
+
+    </section>
+
+{% endblock cambia %}

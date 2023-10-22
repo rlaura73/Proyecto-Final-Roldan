@@ -1,0 +1,43 @@
+<!-- herencia y carga de archivos estáticos -->
+{% extends "Bookrealm/padre.html" %}
+{% load static %}
+
+
+
+<!-- BLOQUE TITLE: titulo de la ventana navegador -->
+{% block title %}
+Busqueda ofertas
+{% endblock %}
+
+
+
+
+<!-- BLOQUE TITULO: título / encabezado de página -->
+{% block titulo %}
+<h1 class="masthead-heading mb-0">Busqueda ofertas</h1>
+<h2 class="masthead-subheading mb-0" style="color:#ee0979;"></h2>
+{% endblock titulo %}
+
+
+
+
+
+<!-- BLOQUE CAMBIA: sección / secciones de la página / contenido -->
+{% block cambia %}
+
+<!-- Content section 1-->
+    <section id="scroll">
+        
+        
+        <form class="d-flex mt-4 px-5 mb-5" method="POST">
+            {% csrf_token %}
+            <input class="form-control me-2" type="text" name="oferta" placeholder="15%, 20%, 25%, 30%" aria-label="Search">
+            <input type="submit" value="Buscar" class="btn btn-outline-success px-5">
+        </form>
+
+
+
+    </section>
+    <!-- Content section 1-->
+
+{% endblock %}

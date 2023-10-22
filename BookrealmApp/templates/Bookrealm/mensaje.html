@@ -1,0 +1,16 @@
+<!-- herencia y carga de archivos estáticos -->
+{% extends "Bookrealm/padre.html" %}
+{% load static %}
+
+
+<!-- BLOQUE TITLE: titulo de la ventana navegador -->
+{% block title %}
+    Mensaje
+{% endblock title %}
+
+
+<!-- BLOQUE TITULO: título / encabezado de página -->
+{% block titulo %}
+<h1 class="masthead-heading mb-0">mensaje</h1>
+<h2 class="masthead-subheading mb-0" style="color:#ee0979;">{{mensaje}}</h2>
+{% endblock titulo %}

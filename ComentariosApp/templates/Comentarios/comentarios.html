@@ -1,0 +1,90 @@
+<!-- herencia y carga de archivos estáticos -->
+{% extends "Bookrealm/padre.html" %}
+{% load static %}
+
+
+<!-- BLOQUE TITLE: titulo de la ventana navegador -->
+{% block title %}
+    Comentarios
+{% endblock title %}
+
+
+<!-- BLOQUE TITULO: título / encabezado de página -->
+{% block titulo %}
+<h1 class="masthead-heading mb-0">Comentarios</h1> <!-- titulo -->
+<h2 class="masthead-subheading mb-0" style="color:#ee0979;">deja tu reseña</h2> <!-- subtitulo -->
+<a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">Ver mas</a> <!-- botón / link a la sección-->
+{% endblock titulo %}
+
+
+
+<!-- BLOQUE CAMBIA: sección / secciones de la página / contenido -->
+{% block cambia %}
+
+<section id="scroll">
+
+  <!-- botón / link para agregar comentario -->
+  {% if request.user.is_superuser or request.user.is_staff %}
+  {% else %}
+    <a href="{% url 'AgregarComentario' %}" class="btn btn-primary mt-3 ms-5">Nueva reseña</a>
+  {% endif %}
+
+  <!-- "leyenda" / mensaje de guía -->
+  <label for="" class="lead mt-3 ms-5">Comparte tus ideas que quieras que se caractericen a futuro para hacer crecer la web y disfrutar de una buena compra de libros</label>
+
+  <!-- contenedor -->
+  <div class="container px-5 mb-4 mt-4">
+
+    <p class="row justify-content-center" style="color:#ee0979;">
+      {{mensaje}} <!-- en caso de no haber registros, desplegar mensaje -->
+    </p>
+
+
+    <!-- listar los registros -->
+    {% for c in comentarios %}
+
+      <h2 class="display-4">{{c.encabezado}}</h2>
+
+      <div class="card mb-5">
+
+          <div class="card-header">
+
+            <!-- desplegar avatar en caso de haber -->
+            {% if avatares %}
+              {% for a in avatares %}
+                {% if a.user == c.usuario %}
+                  <img src="{{ a.avatar.url }}" class="card-img-top me-2" alt="" style="height: 2.5em; width:2.5em;">
+                {% endif %}
+              {% endfor %}
+            {% else %}
+              <img src="" class="card-img-top me-2" alt="">
+            {% endif %}
+
+            <!-- mostrar nombre de usuario y fecha de subida del comentario -->
+            {{c.usuario}} - {{c.fecha}}
+
+          </div>
+
+          <div class="card-body">
+            
+            <h5 class="card-title">{{c.titulo}}</h5>
+            <p class="card-text">{{c.comentario}}</p>
+
+            <!-- comprobar que solo el usuario logueado es el único en poder editar o borrar sus comentarios y no los de otros usuarios -->
+
+            {% if request.user.is_superuser or request.user.is_staff %}
+              <a href="{% url 'EliminarComent' c.id %}" class="btn btn-primary">Eliminar reseña</a>
+            {% endif %}
+            
+            {% if c.usuario == request.user %}
+              <a href="{% url 'EditarComent' c.id %}" class="btn btn-primary">Editar reseña</a>
+              <a href="{% url 'EliminarComent' c.id %}" class="btn btn-primary">Eliminar reseña</a>
+            {% endif %}
+          </div>
+
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock cambia %}
