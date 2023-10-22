@@ -138,6 +138,18 @@ https://www.youtube.com/watch?v=hKDEFuiTgGk
 
 
 
+## Otros
+##### carpeta subida_img
+- carpeta avatares
+- carpeta libros
+##### usuarios
+- super usuario / administrador: Laura - dsfk567E*
+- usuario común: martinez - arrobamart
+- usuario común: tertiary - arrobatert
+
+
+
+
 ## Pasos entorno virtual
 
 ```
